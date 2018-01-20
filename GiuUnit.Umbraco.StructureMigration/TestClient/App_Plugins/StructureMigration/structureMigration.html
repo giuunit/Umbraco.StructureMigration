@@ -1,0 +1,49 @@
+﻿<div ng-controller="StructureMigrationController">
+    <div class="form-horizontal">
+        <div class="umb-property">
+            <div class="control-group umb-control-group">
+                <div class="umb-el-wrap">
+                    <label class="control-label">
+                        Pick your migration process
+                    </label>
+                    <div class="controls">
+                        <div class="umb-property-editor">
+                            <select class="umb-editor umb-dropdown" ng-model="selectedMigration" ng-options="item as item.label for item in data.migrations"></select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="umb-property">
+            <div class="control-group umb-control-group">
+                <div class="umb-el-wrap">
+                    <label class="control-label">
+                        Pick your property
+                    </label>
+                    <div class="controls">
+                        <div class="umb-property-editor">
+                            <select class="umb-editor umb-dropdown" ng-model="selectedProperty" ng-options="item as item.label for item in data.propertyTypes"></select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <button ng-click="addTransitionProp()" ng-disabled="step1Success" class="btn umb-button__button btn-success umb-button--">Run</button>
+            <button ng-show="step1Success" ng-disabled="step2Success" class="btn umb-button__button btn-success umb-button--" ng-click="migrateData()">Migrate Data</button>
+            <button ng-show="step2Success" ng-disabled="step3Success" class="btn umb-button__button btn-success umb-button--" ng-click="renameAndDelete()">Merge</button>
+        </div>
+        <div>
+            <p ng-show="step1Success">
+                Transition property successfully created
+            </p>
+            <p ng-show="step2Success">
+                Data successfully migrated to the new property
+            </p>
+            <p ng-show="step3Success">
+                Merging successfull 
+                <button class="btn umb-button__button btn-success umb-button--" ng-click="refresh()">Refresh</button>
+            </p>
+        </div>
+    </div>
+</div>
